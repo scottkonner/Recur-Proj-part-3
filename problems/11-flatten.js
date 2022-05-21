@@ -10,10 +10,35 @@ flatten([1, 2]); // [1, 2]
 flatten([1, [2, [3]]]); // [1, 2, 3]
 ***********************************************************************/
 
-function flatten(arr) {
-  // Your code here
+function flatten(arr, result = []) {
+
+  debugger
+
+  if (arr.length === 0) {
+    return result
+  }
+
+
+
+  const rest = arr.slice(1);
+  const check = arr[0];
+
+
+  if (Array.isArray(check)) {
+    flatten(check, result)
+  } else {
+    result.push(check)
+  }
+  // if (check.isArray() === false) {
+  //   result.push(check)
+  // }
+  flatten(rest, result);
+
+  return result
 }
-  
+
+console.log(flatten([])); // []
+console.log(flatten([1, 2])); // [1, 2]
+console.log(flatten([1, [2, [3]]])); // [1, 2, 3]
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 module.exports = flatten;
-  
